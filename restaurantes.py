@@ -214,9 +214,6 @@ def excluirRestaurante(arquivo, nomeRestaurante):
             restaurantes.remove(restaurante)
             salvar_json(arquivo, restaurantes)
             print("O restaurante foi excluído.\n")
-			return
-    
-    print("O restaurante não foi encontrado")
 
 # Buscar Restaurante -----------------------
 def buscarRestaurante(arquivo, nomeRestaurante):
@@ -240,9 +237,6 @@ Cardápio:\t\t\t{restaurante['cardapio']}
             print(textwrap.dedent(linha))
             print("=" * 50)
             print("-" * 50, "\n")
-			return
-
-	print("Nenhum restaurante foi encontrado com esse nome")
 
     
     
