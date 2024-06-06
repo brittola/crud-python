@@ -101,15 +101,18 @@ def atualizarRestaurante(arquivo):
 
     nomeRestAntigo = input("\n- Digite o nome do restaurante a ser atualizado: >>> ").title()
 
+    encontrou = False
+
     for restaurante in restaurantes:
         if restaurante['nomeRestaurante'] == nomeRestAntigo:
+            encontrou = True
             while True:
                 if filtrarRestaurante(arquivo, nomeRestAntigo):
                     while True:
                         nomeRestNovo = input("- Digite o novo nome (Pressione Enter para avançar): >>> ")
                         if nomeRestNovo == "":
                             break
-                        if nomeRestNovo != nomeRestAntigo and filtrarRestaurante(arquivo, nomeRestAntigo):
+                        if nomeRestNovo != nomeRestAntigo and filtrarRestaurante(arquivo, nomeRestNovo):
                             print("O nome inserido já existe. Por favor, insira um nome diferente.")
                         else:
                             restaurante['nomeRestaurante'] = nomeRestNovo.title()
@@ -163,6 +166,9 @@ def atualizarRestaurante(arquivo):
             print("O restaurante foi atualizado.")
     print("\n")
 
+    if not encontrou:
+        print("Não foi encontrado um restaurante com esse nome")
+
 def atualizarChave(restaurante, pergunta, chave, prompt, tipo):
     while True:
         opcao = input(f"\n{pergunta}").lower()
@@ -176,7 +182,7 @@ def atualizarChave(restaurante, pergunta, chave, prompt, tipo):
                         maisCardapio = input("Digite novos produtos para o cardápio (Pressione Enter para cancelar) >>> ")
                         if maisCardapio == "":
                             break
-                        cardapio += "\n\t\t\t\t" + maisCardapio
+                        novoValor += "\n\t\t\t\t" + maisCardapio
 
                 if novoValor:
                     restaurante[chave] = novoValor
